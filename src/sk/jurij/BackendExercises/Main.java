@@ -1,18 +1,22 @@
 package sk.jurij.BackendExercises;
 
+import sk.jurij.BackendExercises.model.Driver;
+import sk.jurij.BackendExercises.model.Employee;
+import sk.jurij.BackendExercises.model.Programmer;
+import sk.jurij.BackendExercises.model.Teacher;
+
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args){
-        /*
-        Aký je rozdiel medzi obyčajným poľom (napr. String []) a ArrayListom?
-            arraylist je dynamický, čo znamená že jeho veľkosť sa mení môžme do neho pridávať elementy,
-            pole má fixnú veľkosť a nedajú sa doňho jednoducho pridávať elementy
+        ArrayList<Employee> list = new ArrayList<>();
+        list.add(new Programmer(10,10));
+        list.add(new Teacher(11,10));
+        list.add(new Driver(12, 10));
+        list.forEach(e -> System.out.println(e.getInfo()));
 
-        Prečo má niekedy zmysel pri inicializácii ArrayListu písať počiatočnú kapacitu? new ArrayList(10)?
-            keď máme zadanú počiatočnú hodnotu, v pamäti sa vyhradí priestor pre určený počet elementov
-             a pri pridávaní nových sa jeho veľkosť v pamäti nemení ažkým nepresiahneme danú kapacitu
-
-        Vidíš rozdiel medzi Listom a Setom?
-            keď pouźivame set, predpokladáme že pridávané elementy sa neopakujú a takisto nám hodnoty usporiadá
-         */
+        EmployeeServiceImpl service = new EmployeeServiceImpl();
+        System.out.println(service.getTotalBonuses(list.toArray(new Employee[]{})));
+        System.out.println(service.getTotalSalary(list.toArray(new Employee[]{})));
     }
 }
